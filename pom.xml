@@ -31,6 +31,7 @@
         <sentinel.verison>1.8.5</sentinel.verison>
         <rocketmq.version>4.9.4</rocketmq.version>
         <seata.version>1.5.2</seata.version>
+        <gateway.version>2.2.9.RELEASE</gateway.version>
 
     </properties>
 
@@ -92,6 +93,12 @@
                 <scope>import</scope>
             </dependency>
 
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-gateway</artifactId>
+                <version>${gateway.version}</version>
+            </dependency>
+
         </dependencies>
 
     </dependencyManagement>
@@ -109,5 +116,31 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <pom.profile.name>dev</pom.profile.name>
+                <pom.nacos.ip>192.168.20.129</pom.nacos.ip>
+                <pom.nacos.port>8848</pom.nacos.port>
+                <pom.nacos.namespace>zh-cloud-demo</pom.nacos.namespace>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>test</id>
+            <properties>
+                <pom.profile.name>test</pom.profile.name>
+                <pom.nacos.ip>192.168.20.129</pom.nacos.ip>
+                <pom.nacos.port>8848</pom.nacos.port>
+                <pom.nacos.namespace>zh-cloud-test</pom.nacos.namespace>
+            </properties>
+        </profile>
+    </profiles>
 
 </project>

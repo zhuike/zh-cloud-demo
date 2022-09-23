@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: gateway
+  profiles:
+    active: @pom.profile.name@
+
+  cloud:
+    nacos:
+      discovery:
+        namespace: zh-cloud-demo
+#        namespace: ${NACOS_NAMESPACE:@pom.nacos.namespace@}
+#        server-addr: ${NACOS.URL:@pom.nacos.ip@}:${NACOS.PORT:@pom.nacos.port@}
+        server-addr: @pom.nacos.ip@:@pom.nacos.port@
+      config:
+        namespace: zh-cloud-demo
+        server-addr: @pom.nacos.ip@:@pom.nacos.port@
+#        namespace: ${NACOS_NAMESPACE:@pom.nacos.namespace@}
+#        server-addr: ${NACOS.URL:@pom.nacos.ip@}:${NACOS.PORT:@pom.nacos.port@}
+        group: DEFAULT_GROUP
+        file-extension: yaml
+
